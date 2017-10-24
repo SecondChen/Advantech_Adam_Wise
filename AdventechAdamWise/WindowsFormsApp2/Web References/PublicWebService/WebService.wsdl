@@ -1,0 +1,856 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="ExcuteSQL_Query">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDBName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sSql" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sFromSYS" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExcuteSQL_QueryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExcuteSQL_QueryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExcuteSQL_Batch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDBName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sSql" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="sFromSYS" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ExcuteSQL_BatchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ExcuteSQL_BatchResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strTo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strCC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strBCC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strSubject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strBody" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMailResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetBossList_ByEmployeeNo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EmployeeNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBossList_ByEmployeeNoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBossList_ByEmployeeNoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBossList_ByOrgID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDept" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sBossLevel" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBossList_ByOrgIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBossList_ByOrgIDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FormatChineseNumber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sInputValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="moneyChar" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FormatChineseNumberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FormatChineseNumberResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetE_Expenses_ContactList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sLoginEmployeeNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="doc_type" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetE_Expenses_ContactListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetE_Expenses_ContactListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UACReplaceVerification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sLoginEmployee" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AdminAccountPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UACReplaceVerificationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UACReplaceVerificationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckFlowerEmployeeAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sEmp_No" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckFlowerEmployeeAccountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckFlowerEmployeeAccountResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMSSQLStoredProcedurePara">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDBName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sProcedureName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMSSQLStoredProcedureParaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMSSQLStoredProcedureParaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExcuteStoredProcedure">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDBName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sProcedureName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsPara">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExcuteStoredProcedureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ExcuteStoredProcedureResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExcuteBCSStoredProcedure">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sProcedureName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sParameterValue" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExcuteBCSStoredProcedureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ExcuteBCSStoredProcedureResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFlowerHeaderInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FormKind" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Form_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FORM_STATUS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="APPLYER" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFlowerHeaderInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFlowerHeaderInfoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemOwnerInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProgramName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iOwnerType" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemOwnerInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSystemOwnerInfoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LDAPVerification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sLoginEmployee" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AdminAccountPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LDAPVerificationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LDAPVerificationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LDAPVerificationQA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sLoginEmployee" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AdminAccountPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sEnvironment" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LDAPVerificationQAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LDAPVerificationQAResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddSplitChar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strOri" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strSplitChar" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddSplitCharResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddSplitCharResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ExcuteSQL_QuerySoapIn">
+    <wsdl:part name="parameters" element="tns:ExcuteSQL_Query" />
+  </wsdl:message>
+  <wsdl:message name="ExcuteSQL_QuerySoapOut">
+    <wsdl:part name="parameters" element="tns:ExcuteSQL_QueryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExcuteSQL_BatchSoapIn">
+    <wsdl:part name="parameters" element="tns:ExcuteSQL_Batch" />
+  </wsdl:message>
+  <wsdl:message name="ExcuteSQL_BatchSoapOut">
+    <wsdl:part name="parameters" element="tns:ExcuteSQL_BatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendMailSoapIn">
+    <wsdl:part name="parameters" element="tns:SendMail" />
+  </wsdl:message>
+  <wsdl:message name="SendMailSoapOut">
+    <wsdl:part name="parameters" element="tns:SendMailResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBossList_ByEmployeeNoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBossList_ByEmployeeNo" />
+  </wsdl:message>
+  <wsdl:message name="GetBossList_ByEmployeeNoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBossList_ByEmployeeNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBossList_ByOrgIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBossList_ByOrgID" />
+  </wsdl:message>
+  <wsdl:message name="GetBossList_ByOrgIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBossList_ByOrgIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="FormatChineseNumberSoapIn">
+    <wsdl:part name="parameters" element="tns:FormatChineseNumber" />
+  </wsdl:message>
+  <wsdl:message name="FormatChineseNumberSoapOut">
+    <wsdl:part name="parameters" element="tns:FormatChineseNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetE_Expenses_ContactListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetE_Expenses_ContactList" />
+  </wsdl:message>
+  <wsdl:message name="GetE_Expenses_ContactListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetE_Expenses_ContactListResponse" />
+  </wsdl:message>
+  <wsdl:message name="UACReplaceVerificationSoapIn">
+    <wsdl:part name="parameters" element="tns:UACReplaceVerification" />
+  </wsdl:message>
+  <wsdl:message name="UACReplaceVerificationSoapOut">
+    <wsdl:part name="parameters" element="tns:UACReplaceVerificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckFlowerEmployeeAccountSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckFlowerEmployeeAccount" />
+  </wsdl:message>
+  <wsdl:message name="CheckFlowerEmployeeAccountSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckFlowerEmployeeAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMSSQLStoredProcedureParaSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMSSQLStoredProcedurePara" />
+  </wsdl:message>
+  <wsdl:message name="GetMSSQLStoredProcedureParaSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMSSQLStoredProcedureParaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExcuteStoredProcedureSoapIn">
+    <wsdl:part name="parameters" element="tns:ExcuteStoredProcedure" />
+  </wsdl:message>
+  <wsdl:message name="ExcuteStoredProcedureSoapOut">
+    <wsdl:part name="parameters" element="tns:ExcuteStoredProcedureResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExcuteBCSStoredProcedureSoapIn">
+    <wsdl:part name="parameters" element="tns:ExcuteBCSStoredProcedure" />
+  </wsdl:message>
+  <wsdl:message name="ExcuteBCSStoredProcedureSoapOut">
+    <wsdl:part name="parameters" element="tns:ExcuteBCSStoredProcedureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFlowerHeaderInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFlowerHeaderInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetFlowerHeaderInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFlowerHeaderInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemOwnerInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystemOwnerInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemOwnerInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemOwnerInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="LDAPVerificationSoapIn">
+    <wsdl:part name="parameters" element="tns:LDAPVerification" />
+  </wsdl:message>
+  <wsdl:message name="LDAPVerificationSoapOut">
+    <wsdl:part name="parameters" element="tns:LDAPVerificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="LDAPVerificationQASoapIn">
+    <wsdl:part name="parameters" element="tns:LDAPVerificationQA" />
+  </wsdl:message>
+  <wsdl:message name="LDAPVerificationQASoapOut">
+    <wsdl:part name="parameters" element="tns:LDAPVerificationQAResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddSplitCharSoapIn">
+    <wsdl:part name="parameters" element="tns:AddSplitChar" />
+  </wsdl:message>
+  <wsdl:message name="AddSplitCharSoapOut">
+    <wsdl:part name="parameters" element="tns:AddSplitCharResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebServiceSoap">
+    <wsdl:operation name="ExcuteSQL_Query">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">V16.10.27.0930</wsdl:documentation>
+      <wsdl:input message="tns:ExcuteSQL_QuerySoapIn" />
+      <wsdl:output message="tns:ExcuteSQL_QuerySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExcuteSQL_Batch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">V16.05.17.0930</wsdl:documentation>
+      <wsdl:input message="tns:ExcuteSQL_BatchSoapIn" />
+      <wsdl:output message="tns:ExcuteSQL_BatchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMail">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send Mail by MDS@Darwinprecisions.com , Version : V16.05.12.1550 </wsdl:documentation>
+      <wsdl:input message="tns:SendMailSoapIn" />
+      <wsdl:output message="tns:SendMailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBossList_ByEmployeeNo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">V16.05.11.1640</wsdl:documentation>
+      <wsdl:input message="tns:GetBossList_ByEmployeeNoSoapIn" />
+      <wsdl:output message="tns:GetBossList_ByEmployeeNoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBossList_ByOrgID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">V16.05.11.1640</wsdl:documentation>
+      <wsdl:input message="tns:GetBossList_ByOrgIDSoapIn" />
+      <wsdl:output message="tns:GetBossList_ByOrgIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FormatChineseNumber">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">V16.06.27.1530</wsdl:documentation>
+      <wsdl:input message="tns:FormatChineseNumberSoapIn" />
+      <wsdl:output message="tns:FormatChineseNumberSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetE_Expenses_ContactList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">V16.06.21.1400</wsdl:documentation>
+      <wsdl:input message="tns:GetE_Expenses_ContactListSoapIn" />
+      <wsdl:output message="tns:GetE_Expenses_ContactListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UACReplaceVerification">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">V16.11.04.1140</wsdl:documentation>
+      <wsdl:input message="tns:UACReplaceVerificationSoapIn" />
+      <wsdl:output message="tns:UACReplaceVerificationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckFlowerEmployeeAccount">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">V16.06.23.1700</wsdl:documentation>
+      <wsdl:input message="tns:CheckFlowerEmployeeAccountSoapIn" />
+      <wsdl:output message="tns:CheckFlowerEmployeeAccountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMSSQLStoredProcedurePara">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">V16.08.10.1700</wsdl:documentation>
+      <wsdl:input message="tns:GetMSSQLStoredProcedureParaSoapIn" />
+      <wsdl:output message="tns:GetMSSQLStoredProcedureParaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExcuteStoredProcedure">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">V16.08.10.1700</wsdl:documentation>
+      <wsdl:input message="tns:ExcuteStoredProcedureSoapIn" />
+      <wsdl:output message="tns:ExcuteStoredProcedureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExcuteBCSStoredProcedure">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">V16.08.17.1600</wsdl:documentation>
+      <wsdl:input message="tns:ExcuteBCSStoredProcedureSoapIn" />
+      <wsdl:output message="tns:ExcuteBCSStoredProcedureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFlowerHeaderInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">V16.09.02.1500</wsdl:documentation>
+      <wsdl:input message="tns:GetFlowerHeaderInfoSoapIn" />
+      <wsdl:output message="tns:GetFlowerHeaderInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemOwnerInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">V16.09.23.1400</wsdl:documentation>
+      <wsdl:input message="tns:GetSystemOwnerInfoSoapIn" />
+      <wsdl:output message="tns:GetSystemOwnerInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LDAPVerification">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">V17.01.05.1700</wsdl:documentation>
+      <wsdl:input message="tns:LDAPVerificationSoapIn" />
+      <wsdl:output message="tns:LDAPVerificationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LDAPVerificationQA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">V17.03.17.1600</wsdl:documentation>
+      <wsdl:input message="tns:LDAPVerificationQASoapIn" />
+      <wsdl:output message="tns:LDAPVerificationQASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSplitChar">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">V17.06.28.0930</wsdl:documentation>
+      <wsdl:input message="tns:AddSplitCharSoapIn" />
+      <wsdl:output message="tns:AddSplitCharSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ExcuteSQL_Query">
+      <soap:operation soapAction="http://tempuri.org/ExcuteSQL_Query" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcuteSQL_Batch">
+      <soap:operation soapAction="http://tempuri.org/ExcuteSQL_Batch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMail">
+      <soap:operation soapAction="http://tempuri.org/SendMail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBossList_ByEmployeeNo">
+      <soap:operation soapAction="http://tempuri.org/GetBossList_ByEmployeeNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBossList_ByOrgID">
+      <soap:operation soapAction="http://tempuri.org/GetBossList_ByOrgID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FormatChineseNumber">
+      <soap:operation soapAction="http://tempuri.org/FormatChineseNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetE_Expenses_ContactList">
+      <soap:operation soapAction="http://tempuri.org/GetE_Expenses_ContactList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UACReplaceVerification">
+      <soap:operation soapAction="http://tempuri.org/UACReplaceVerification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckFlowerEmployeeAccount">
+      <soap:operation soapAction="http://tempuri.org/CheckFlowerEmployeeAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMSSQLStoredProcedurePara">
+      <soap:operation soapAction="http://tempuri.org/GetMSSQLStoredProcedurePara" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcuteStoredProcedure">
+      <soap:operation soapAction="http://tempuri.org/ExcuteStoredProcedure" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcuteBCSStoredProcedure">
+      <soap:operation soapAction="http://tempuri.org/ExcuteBCSStoredProcedure" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFlowerHeaderInfo">
+      <soap:operation soapAction="http://tempuri.org/GetFlowerHeaderInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemOwnerInfo">
+      <soap:operation soapAction="http://tempuri.org/GetSystemOwnerInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LDAPVerification">
+      <soap:operation soapAction="http://tempuri.org/LDAPVerification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LDAPVerificationQA">
+      <soap:operation soapAction="http://tempuri.org/LDAPVerificationQA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSplitChar">
+      <soap:operation soapAction="http://tempuri.org/AddSplitChar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebServiceSoap12" type="tns:WebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ExcuteSQL_Query">
+      <soap12:operation soapAction="http://tempuri.org/ExcuteSQL_Query" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcuteSQL_Batch">
+      <soap12:operation soapAction="http://tempuri.org/ExcuteSQL_Batch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMail">
+      <soap12:operation soapAction="http://tempuri.org/SendMail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBossList_ByEmployeeNo">
+      <soap12:operation soapAction="http://tempuri.org/GetBossList_ByEmployeeNo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBossList_ByOrgID">
+      <soap12:operation soapAction="http://tempuri.org/GetBossList_ByOrgID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FormatChineseNumber">
+      <soap12:operation soapAction="http://tempuri.org/FormatChineseNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetE_Expenses_ContactList">
+      <soap12:operation soapAction="http://tempuri.org/GetE_Expenses_ContactList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UACReplaceVerification">
+      <soap12:operation soapAction="http://tempuri.org/UACReplaceVerification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckFlowerEmployeeAccount">
+      <soap12:operation soapAction="http://tempuri.org/CheckFlowerEmployeeAccount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMSSQLStoredProcedurePara">
+      <soap12:operation soapAction="http://tempuri.org/GetMSSQLStoredProcedurePara" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcuteStoredProcedure">
+      <soap12:operation soapAction="http://tempuri.org/ExcuteStoredProcedure" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcuteBCSStoredProcedure">
+      <soap12:operation soapAction="http://tempuri.org/ExcuteBCSStoredProcedure" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFlowerHeaderInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetFlowerHeaderInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemOwnerInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetSystemOwnerInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LDAPVerification">
+      <soap12:operation soapAction="http://tempuri.org/LDAPVerification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LDAPVerificationQA">
+      <soap12:operation soapAction="http://tempuri.org/LDAPVerificationQA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSplitChar">
+      <soap12:operation soapAction="http://tempuri.org/AddSplitChar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebService">
+    <wsdl:port name="WebServiceSoap" binding="tns:WebServiceSoap">
+      <soap:address location="http://bvtwoma1/Public_WS/WebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebServiceSoap12" binding="tns:WebServiceSoap12">
+      <soap12:address location="http://bvtwoma1/Public_WS/WebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
